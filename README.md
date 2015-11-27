@@ -1,6 +1,6 @@
 <a href="http://kotlinslackin.herokuapp.com"><img src="https://kotlinslackin.herokuapp.com/badge.svg" height="20"></a>
 
-This is the source for the [Kotlin Web Site](http://kotlinlang.org)
+这是[Kotlin中文网站](http://kotlinlang.org)的源码
 
 - [Filing bugs](#filing-bugs)
 - [Installation](#installation)

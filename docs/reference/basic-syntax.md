@@ -1,15 +1,15 @@
 ---
 type: doc
 layout: reference
-category: "Basics"
-title: "Basic Syntax"
+category: "基础"
+title: "基本语法"
 ---
 
-# Basic Syntax
+# 基本语法
 
-## Defining packages
+## 定义包
 
-Package specification should be at the top of the source file:
+报的定义应该在源码文件的顶部：
 
 ``` kotlin
 package my.demo
@@ -19,13 +19,13 @@ import java.util.*
 // ...
 ```
 
-It is not required to match directories and packages: source files can be placed arbitrarily in the file system.
+并不要求文件夹和包匹配：源文件可以放在文件系统的任何位置。
 
-See [Packages](packages.html).
+参见 [包](packages.html).
 
-## Defining functions
+## 定义函数
 
-Function having two `Int` parameters with `Int` return type:
+有两个`Int`参数和一个`Int`返回类型的函数：
 
 ``` kotlin
 fun sum(a: Int, b: Int): Int {
@@ -33,13 +33,13 @@ fun sum(a: Int, b: Int): Int {
 }
 ```
 
-Function with an expression body and inferred return type:
+有表达式主体和推测返回类型的函数：
 
 ``` kotlin
 fun sum(a: Int, b: Int) = a + b
 ```
 
-Function returning no meaningful value:
+返回无意义值得函数：
 
 ``` kotlin
 fun printSum(a: Int, b: Int): Unit {
@@ -47,7 +47,7 @@ fun printSum(a: Int, b: Int): Unit {
 }
 ```
 
-`Unit` return type can be omitted:
+`Unit`返回类型可以省略:
 
 ``` kotlin
 public fun printSum(a: Int, b: Int) {
@@ -55,29 +55,29 @@ public fun printSum(a: Int, b: Int) {
 }
 ```
 
-See [Functions](functions.html).
+参见 [函数](functions.html).
 
-## Defining local variables
+## 定义局部变量
 
-Assign-once (read-only) local variable:
+单次赋值（只读）局部变量：
 
 ``` kotlin
 val a: Int = 1
-val b = 1   // `Int` type is inferred
-val c: Int  // Type required when no initializer is provided
-c = 1       // definite assignment
+val b = 1   // `Int` 类型可以被推断出来
+val c: Int  // 没有初始化时需要声明类型
+c = 1       // 确定赋值
 ```
 
-Mutable variable:
+可变变量:
 
 ``` kotlin
-var x = 5 // `Int` type is inferred
+var x = 5 // `Int` 类型可以被推断出来
 x += 1
 ```
 
-See also [Properties And Fields](properties.html).
+参见 [属性 和 字段](properties.html).
 
-## Using string templates
+## 使用字符串模板
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -87,9 +87,9 @@ fun main(args: Array<String>) {
 }
 ```
 
-See [String templates](basic-types.html#string-templates).
+参见 [String templates](basic-types.html#string-templates).
 
-## Using conditional expressions
+## 使用条件表达式
 
 ``` kotlin
 fun max(a: Int, b: Int): Int {
@@ -100,19 +100,19 @@ fun max(a: Int, b: Int): Int {
 }
 ```
 
-Using *if*{: .keyword } as an expression:
+使用 *if*{: .keyword } 作为表达式
 
 ``` kotlin
 fun max(a: Int, b: Int) = if (a > b) a else b
 ```
 
-See [*if*{: .keyword }-expressions](control-flow.html#if-expression).
+参见 [*if*{: .keyword }-表达式](control-flow.html#if-expression).
 
-## Using nullable values and checking for *null*{: .keyword }
+## 使用可空值，并且检查是否为*null*{: .keyword }
 
-A reference must be explicitly marked as nullable when *null*{: .keyword } value is possible.
+当引用可能为*null*{: .keyword }值时，需要显式标明是可空的。
 
-Return *null*{: .keyword } if `str` does not hold an integer:
+如果`str`不包含整数，返回 *null*{: .keyword }：
 
 ``` kotlin
 fun parseInt(str: String): Int? {
@@ -120,7 +120,7 @@ fun parseInt(str: String): Int? {
 }
 ```
 
-Use a function returning nullable value:
+使用返回可空值的函数：
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -132,15 +132,15 @@ fun main(args: Array<String>) {
   val x = parseInt(args[0])
   val y = parseInt(args[1])
 
-  // Using `x * y` yields error because they may hold nulls.
+  // 使用`x * y`可能会产生错误，应为它们可能含有空值
   if (x != null && y != null) {
-    // x and y are automatically cast to non-nullable after null check
+    // null检查后，x和y自动会转换为非空类型
     print(x * y)
   }
 }
 ```
 
-or
+或者
 
 ``` kotlin
   // ...
@@ -153,37 +153,37 @@ or
     return
   }
 
-  // x and y are automatically cast to non-nullable after null check
+  // x和y在空检查后自动转换为非空类型
   print(x * y)
 ```
 
-See [Null-safety](null-safety.html).
+参见 [Null-安全](null-safety.html).
 
-## Using type checks and automatic casts
+## 使用类型检查并且自动转换
 
-The *is*{: .keyword } operator checks if an expression is an instance of a type.
-If an immutable local variable or property is checked for a specific type, there's no need to cast it explicitly:
+*is*{: .keyword }操作符检查表达式是否是某一类型的实例。
+如果对一个不可变局部变量或者属性检查是否是某一特定类型，就不需要显式的强制转换了:
 
 ``` kotlin
 fun getStringLength(obj: Any): Int? {
   if (obj is String) {
-    // `obj` is automatically cast to `String` in this branch
+    // `obj` 在这个分支自动转换为`String`
     return obj.length
   }
 
-  // `obj` is still of type `Any` outside of the type-checked branch
+  // 在分支外，`obj`依旧是`Any`类型
   return null
 }
 ```
 
-or
+或者
 
 ``` kotlin
 fun getStringLength(obj: Any): Int? {
   if (obj !is String)
     return null
 
-  // `obj` is automatically cast to `String` in this branch
+  // `obj`在这个分支自动转换为`String`
   return obj.length
 }
 ```
@@ -192,7 +192,7 @@ or even
 
 ``` kotlin
 fun getStringLength(obj: Any): Int? {
-  // `obj` is automatically cast to `String` on the right-hand side of `&&`
+  // `obj`在`&&`右侧自动转换为`String`
   if (obj is String && obj.length > 0)
     return obj.length
 
@@ -200,9 +200,9 @@ fun getStringLength(obj: Any): Int? {
 }
 ```
 
-See [Classes](classes.html) and [Type casts](typecasts.html).
+参见 [类](classes.html) and [类型转换](typecasts.html).
 
-## Using a `for` loop
+## 使用 `for` 循环
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -211,16 +211,16 @@ fun main(args: Array<String>) {
 }
 ```
 
-or
+或者
 
 ``` kotlin
 for (i in args.indices)
   print(args[i])
 ```
 
-See [for loop](control-flow.html#for-loops).
+参见 [for 循环](control-flow.html#for-loops).
 
-## Using a `while` loop
+## 使用`while`循环
 
 ``` kotlin
 fun main(args: Array<String>) {
@@ -230,9 +230,9 @@ fun main(args: Array<String>) {
 }
 ```
 
-See [while loop](control-flow.html#while-loops).
+参加 [while 循环](control-flow.html#while-loops).
 
-## Using `when` expression
+## 使用 `when` 表达式
 
 ``` kotlin
 fun cases(obj: Any) {
@@ -246,50 +246,50 @@ fun cases(obj: Any) {
 }
 ```
 
-See [when expression](control-flow.html#when-expression).
+参见 [when 表达式](control-flow.html#when-expression).
 
-## Using ranges
+## 使用 ranges
 
-Check if a number is within a range using *in*{: .keyword } operator:
+使用*in*{: .keyword }操作符，检查一个数是否在一个范围之内:
 
 ``` kotlin
 if (x in 1..y-1)
   print("OK")
 ```
 
-Check if a number is out of range:
+检查一个数是否在范围之外：
 
 ``` kotlin
 if (x !in 0..array.lastIndex)
   print("Out")
 ```
 
-Iterating over a range:
+遍历一个范围：
 
 ``` kotlin
 for (x in 1..5)
   print(x)
 ```
 
-See [Ranges](ranges.html).
+参见 [Ranges](ranges.html).
 
-## Using collections
+## 使用集合
 
-Iterating over a collection:
+遍历一个集合：
 
 ``` kotlin
 for (name in names)
   println(name)
 ```
 
-Checking if a collection contains an object using *in*{: .keyword } operator:
+使用*in*{: .keyword }操作符，检查一个集合是否含有某个对象：
 
 ``` kotlin
 if (text in names) // names.contains(text) is called
   print("Yes")
 ```
 
-Using function literals to filter and map collections:
+使用函数字面量来过滤(filter)和映射(map)集合：
 
 ``` kotlin
 names
@@ -299,5 +299,5 @@ names
     .forEach { print(it) }
 ```
 
-See [Higher-order functions and Lambdas](lambdas.html).
+参见 [高阶函数 和 Lambdas](lambdas.html).
 
